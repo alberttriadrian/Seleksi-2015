@@ -1,5 +1,4 @@
-[
-    {
+coal_export = '[{
         "tipe_entitas": "BUMN",
         "nama_entitas": "Bukit Asam",
         "tahun": "2003",
@@ -2734,8 +2733,5 @@
         "nama_entitas": "Prov. Sumatera Selatan",
         "tahun": "2010",
         "nilai": ""
-    },
-    {
-        "tipe_entitas": ""
     }
-]
+]';
