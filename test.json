@@ -1,5 +1,1 @@
-{
-	"item1" : "John",
-	"item2" : "Doe",
-	"item3" : "25"
-}
+data = '[{"name" : "Ashwin", "age" : "20"},{"name" : "Abhinandan", "age" : "20"}]';

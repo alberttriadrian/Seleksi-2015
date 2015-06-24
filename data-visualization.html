@@ -52,7 +52,7 @@
 						<a href="#page-top"></a>
 					</li>
 					<li>
-						<a class="page-scroll" href="data-visualization.html">Data Visualization</a>
+						<a class="page-scroll" href="#Data Visualization">Data Visualization</a>
 					</li>
 					<li>
 						<a class="page-scroll" href="#About Us">About Us</a>
@@ -92,101 +92,19 @@
         </ul>
     </nav>
 
-    <!-- Header -->
-    <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1>SkyData Visualization</h1>
-            <h3>See Data from the Sky</h3>
-            <br>
-            <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
-        </div>
-    </header>
-
     <!-- About -->
     <section id="about" class="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Our data visualization is the perfect match for your life!</h2>
-                    <p class="lead">This Data visualzation bring you wonderful insight about the energy distribution in Indonesia that based on <a target="_blank" href="http://data.go.id/">Portal Data Indonesia</a>.</p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
     </section>
 
     <!-- Services -->
     <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <section id="services" class="services bg-primary">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h2>Our Data</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-									<img class="img-circle img-responsive img-center" src="img/mineral.png" alt="">								        
-								</span>
-                                <h4>
-                                    <strong>Mineral</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-									<img class="img-circle img-responsive img-center" src="img/coal.png" alt="">								        
-								</span>
-                                <h4>
-                                    <strong>Coal</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-									<img class="img-circle img-responsive img-center" src="img/crude_oil.png" alt="">								        
-								</span>
-                                <h4>
-                                    <strong>Crude Oil</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
+
 
     <!-- The Data Visualization Implementation -->	
 	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 	
+	<div id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+
     <!-- Callout -->
     <aside class="callout">
         <div class="text-vertical-center">
@@ -348,12 +266,12 @@
 				x: -20
 			},
 			xAxis: {
-				categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-					'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+				categories: ['2003', '2004', '2005', '2006', '2007', '2008',
+					'2009', '2010']
 			},
 			yAxis: {
 				title: {
-					text: 'Temperature (°C)'
+					text: 'Coal Units (units)'
 				},
 				plotLines: [{
 					value: 0,
@@ -362,7 +280,7 @@
 				}]
 			},
 			tooltip: {
-				valueSuffix: '°C'
+				valueSuffix: 'units'
 			},
 			legend: {
 				layout: 'vertical',
@@ -385,9 +303,78 @@
 			}]
 		});
 	});	
+	
+	$(function () {
+		$('#container2').highcharts({
+			chart: {
+				type: 'bar'
+			},
+			title: {
+				text: 'Historic World Population by Region'
+			},
+			subtitle: {
+				text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+			},
+			xAxis: {
+				categories: ['2003', '2004', '2005', '2006', '2007', '2008',
+					'2009', '2010'],
+				title: {
+					text: null
+				}
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'Coal Units (units)',
+					align: 'high'
+				},
+				labels: {
+					overflow: 'justify'
+				}
+			},
+			tooltip: {
+				valueSuffix: ' millions'
+			},
+			plotOptions: {
+				bar: {
+					dataLabels: {
+						enabled: true
+					}
+				}
+			},
+			legend: {
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'top',
+				x: -40,
+				y: 80,
+				floating: true,
+				borderWidth: 1,
+				backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+				shadow: true
+			},
+			credits: {
+				enabled: false
+			},
+			series: [{
+				name: 'Tokyo',
+				data: [107, 31, 635, 203, 2,1,2,3]
+			}, {
+				name: 'Semarang',
+				data: [133, 156, 947, 408, 6,3,4,5]
+			}, {
+				name: 'Jakarta',
+				data: [973, 914, 4054, 732, 34,4,5,6]
+			}, {
+				name: 'Indonesia',
+				data: [1052, 954, 4250, 740, 38,5,6,7]
+			}]
+		});
+	});
 		
     </script>
 
 </body>
 
 </html>
+
