@@ -101,22 +101,39 @@
 	<div class="row">
 	  <div class="col-lg-10 col-md-offset-1">
 		<button id="add-button">+ Add</button>
+		<button id="delete-button">- Delete</button>
 	  </div>
 	</div>
 	
-	<p id="input_place"></p>
+	<div id="input_place_parent">
+		<p id="input_place"></p>
+	</div>
 	
-	<div class="row">
-	  <div class="col-lg-10 col-md-offset-1">
+	<div class="col-lg-10 col-md-offset-1">
 		<button id="chart-button">Chart</button>
-	  </div>
-	  <div class="col-lg-10 col-md-offset-1">
 		<button id="bar-button">Bar</button>
-	  </div>
 	</div>
-
+	
     <!-- The Data Visualization Implementation -->	
 	<div id="visualization_place" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+	<div class="row">
+		<div class="col-lg-10 col-md-offset-1">  
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  Company Name
+					  <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+					  <li><a id="1-1" onclick="listValue(id)">Dropdown link 2</a></li>
+					  <li><a id="1-2" onclick="listValue(id)">Dropdown link</a></li>
+					</ul>
+				</span>
+				<input type="text" class="form-control" id="company1" placeholder="Input your company name ..."> 
+			</div>
+		</div>
+	</div>
 	
     <!-- Call to Action -->
     <aside class="call-to-action bg-primary">
@@ -130,16 +147,6 @@
             </div>
         </div>
     </aside>
-
-    <!-- Map -->
-    <section id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-        <br />
-        <small>
-            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-        </small>
-        </iframe>
-    </section>
 
     <!-- Footer -->
     <footer>
@@ -205,7 +212,7 @@
 	//Add the input box, the company name
     $("button#add-button").click(function(){
 		if (input_index <= 4){
-			var input_add = "<br><div class=\"row\"><div class=\"col-lg-10 col-md-offset-1\">" + 
+			var input_add = "<br><div class=\"row\" id=\"company_parent" +input_index + "\"><div class=\"col-lg-10 col-md-offset-1\">" + 
 				"<div class=\"input-group\"><span class=\"input-group-btn\"><button class=\"btn btn-default\"" + 
 				" type=\"button\">Company Name " + input_index +"</button></span><input type=\"text\"" +
 				" class=\"form-control\" id=\"company"+ input_index + "\" " + " placeholder=\"Input your company name ...\">" + 
@@ -214,7 +221,19 @@
 			input_index++;
 		}
     });
-		
+   
+	//Delete the input box, the company name
+    $("button#delete-button").click(function(){
+		if (input_index > 1){
+			$("div#company_parent" + (input_index-1) ).remove();
+			input_index--;		
+		}
+    });
+
+    function listValue(id){
+		document.getElementById("company" + id.charAt(0)).value = document.getElementById(id.toString()).innerHTML;		
+	}
+    
     //Line Chart
 	$(function () {
 		//Submit the company name
