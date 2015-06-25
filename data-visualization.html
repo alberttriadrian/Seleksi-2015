@@ -100,105 +100,24 @@
     
 	<div class="row">
 	  <div class="col-lg-10 col-md-offset-1">
-		<div class="input-group">
-		  <span class="input-group-btn">
-			<button class="btn btn-default" type="button">Company Name</button>
-		  </span>
-		  <input type="text" class="form-control" placeholder="Input your company name ...">
-		</div>
-	  </div>
-	</div>
-
-	<div class="row">
-	  <div class="col-lg-10 col-md-offset-1">
-		<button id="add-button" onclick="addInputIndex()">Click me</button>
+		<button id="add-button">+ Add</button>
 	  </div>
 	</div>
 	
 	<p id="input_place"></p>
 	
-<p id="demo"></p>
-
-<p>Field 1: <input type="text" name="field[1]" class="fields"></p> 
-<p>Field 2: <input type="text" name="field[2]" class="fields"></p>
-
-<script>
-var testArray = [];
-	
-function myFunction() {
-	var x =  document.getElementById("company1").value;
-	testArray.push(x)
-    document.getElementById("demo").innerHTML = str;
-}
-</script>
-
-    <!-- Services -->
-    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-
+	<div class="row">
+	  <div class="col-lg-10 col-md-offset-1">
+		<button id="chart-button">Chart</button>
+	  </div>
+	  <div class="col-lg-10 col-md-offset-1">
+		<button id="bar-button">Bar</button>
+	  </div>
+	</div>
 
     <!-- The Data Visualization Implementation -->	
-	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	<div id="visualization_place" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 	
-	<div id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
-	
-	<div id="demo" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-	<div id="demo2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-	
-    <!-- Callout -->
-    <aside class="callout">
-        <div class="text-vertical-center">
-            <h1>Vertically Centered Text</h1>
-        </div>
-    </aside>
-
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h2>Our Work</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-1.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-2.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-3.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-4.jpg">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                    <a href="#" class="btn btn-dark">View More Items</a>
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-
     <!-- Call to Action -->
     <aside class="call-to-action bg-primary">
         <div class="container">
@@ -268,111 +187,18 @@ function myFunction() {
     <script type="text/javascript" src="coal.js"></script>
     
     <script>
+		
 	var years = ['2003', '2004', '2005', '2006', '2007', '2008','2009', '2010'];
 	var input = [];
-	input.push("Adaro Indonesia, PT");
-	input.push("Allied Indo Coal, PT");
-	input.push("Antang Gunung Meratus, PT");
-	input.push("Asmin Koalindo Tuhup, PT");
-	input.push("Arutmin Indonesia, PT");
 
-	function loadValue() {
-		var mycoal = JSON.parse(coal_export);
-		
-		var value = [];
-		var i;
-		for (i = 0; i < mycoal.length; i++) {
-			var j; 
-			for (j = 0; j < input.length; j++ ){
-				if (mycoal[i].nama_entitas == input[j]){
-					if (mycoal[i].nilai != ""){
-						value.push(parseInt(mycoal[i].nilai));					
-					}
-					else{
-						value.push(0);
-					}
-				}
-			}
+	var names = [];
+	var values = [];
 
-		}	
-		return value;
-
-	}		
-	
-	function loadName() {
-		var mycoal = JSON.parse(coal_export);
-		
-		var text = [];
-		var i;
-		for (i = 0; i < mycoal.length; i++) {
-			var j; 
-			for (j = 0; j < input.length; j++ ){
-				if (mycoal[i].nama_entitas == input[j]){
-					text.push(mycoal[i].nama_entitas);					
-				}
-			}
-
-		}	
-		return text;
-	}	
-	
-	var names = loadName();
-	var values = loadValue();
-	//var series = generateData();
 	var value1 = [];
 	var value2 = [];
 	var value3 = [];
 	var value4 = [];
-	//generateData();
-	splitValue();
 
-	
-	function splitValue(){
-		for (var i = 0 ; i < 8 ; i++){
-			value1.push(values[i]);
-		}
-		for (var i = 8 ; i < 16 ; i++){
-			value2.push(values[i]);
-		}
-		for (var i = 16 ; i < 24 ; i++){
-			value3.push(values[i]);
-		}
-		for (var i = 24 ; i < 32 ; i++){
-			value4.push(values[i]);
-		}
-	}
-	
-	/*function generateData() {
-		var seriesTemp =[];
-		var len1 = input.length;
-		var len2 = values.length;
-		var index = 0;
-		var index2 = 0;
-		for (var i = 0 ; i < len1 ; i++){
-			var dataTemp = [];
-			for (var count = 0; count < 8 ; count++ ){
-				dataTemp.push(values[index2]);
-				if (index2 != values.length()){
-					index2++;
-				}
-			}
-			
-			seriesTemp.push({
-				name: names[index],
-				data: []
-			});
-			
-			seriesTemp[i].data.push(dataTemp);
-			
-			index += 8;
-		}
-		return seriesTemp;
-    }*/
-    
-    
-	document.getElementById("demo").innerHTML = loadName();
-	document.getElementById("demo2").innerHTML = loadValue();
-	
 	var input_index = 1;
 	var input_add;
 	
@@ -382,97 +208,143 @@ function myFunction() {
 			var input_add = "<br><div class=\"row\"><div class=\"col-lg-10 col-md-offset-1\">" + 
 				"<div class=\"input-group\"><span class=\"input-group-btn\"><button class=\"btn btn-default\"" + 
 				" type=\"button\">Company Name " + input_index +"</button></span><input type=\"text\"" +
-				" class=\"form-control\" id=\"company\""+ input_index + " placeholder=\"Input your company name ...\">" + 
+				" class=\"form-control\" id=\"company"+ input_index + "\" " + " placeholder=\"Input your company name ...\">" + 
 				"</div></div></div>" ;
 			$(input_add).insertBefore("p#input_place");
-			input_index++;
-			
+			input_index++
 		}
     });
-
-
-    // Closes the sidebar menu
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-
-    // Opens the sidebar menu
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-
-    // Scrolls to the selected menu item on the page
-    $(function() {
-        $('a[href*=#]:not([href=#])').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                }
-            }
-        });
-	});	
-        
+		
     //Line Chart
 	$(function () {
-		$('#container').highcharts({
-			title: {
-				text: 'Monthly Average Temperature',
-				x: -20 //center
-			},
-			subtitle: {
-				text: 'Source: WorldClimate.com',
-				x: -20
-			},
-			xAxis: {
-				categories: years
-			},
-			yAxis: {
-				title: {
-					text: 'Coal Units (units)'
-				},
-				plotLines: [{
-					value: 0,
-					width: 1,
-					color: '#808080'
-				}]
-			},
-			tooltip: {
-				valueSuffix: 'units'
-			},
-			legend: {
-				layout: 'vertical',
-				align: 'right',
-				verticalAlign: 'middle',
-				borderWidth: 0
-			},
-			series: [{
-				name: names[0],
-				data: value1
-			}, {
-				name: names[8],
-				data: value2
-			}, {
-				name: names[16],
-				data: value3
-			}, {
-				name: names[24],
-				data: value4
-			}]
-		});
-	});	
-	
-	$(function () {
-		var point_width = 8;
+		//Submit the company name
 		
-		$('#container2').highcharts({
+		$("button#chart-button").click(function(){	
+			$('#visualization_place').highcharts({
+				title: {
+					text: 'Monthly Average Temperature',
+					x: -20 //center
+				},
+				subtitle: {
+					text: 'Source: WorldClimate.com',
+					x: -20
+				},
+				xAxis: {
+					categories: years
+				},
+				yAxis: {
+					title: {
+						text: 'Coal Units (units)'
+					},
+					plotLines: [{
+						value: 0,
+						width: 1,
+						color: '#808080'
+					}]
+				},
+				tooltip: {
+					valueSuffix: 'units'
+				},
+				legend: {
+					layout: 'vertical',
+					align: 'right',
+					verticalAlign: 'middle',
+					borderWidth: 0
+				},
+				series: [{
+					name: names[0],
+					data: value1
+				}, {
+					name: names[8],
+					data: value2
+				}, {
+					name: names[16],
+					data: value3
+				}, {
+					name: names[24],
+					data: value4
+				}]
+			});
+		});	
+		
+		$("button#bar-button").click(function(){
+			var point_width = 8;	
+			$('#visualization_place').highcharts({
+				chart: {
+					type: 'bar'
+				},
+				title: {
+					text: 'Historic World Population by Region'
+				},
+				subtitle: {
+					text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+				},
+				xAxis: {
+					categories: ['2003', '2004', '2005', '2006', '2007', '2008',
+						'2009', '2010'],
+					title: {
+						text: null
+					}
+				},
+				yAxis: {
+					min: 0,
+					title: {
+						text: 'Coal Units (units)',
+						align: 'high'
+					},
+					labels: {
+						overflow: 'justify'
+					}
+				},
+				tooltip: {
+					valueSuffix: ' millions'
+				},
+				plotOptions: {
+					bar: {
+						dataLabels: {
+							enabled: true
+						}
+					}
+				},
+				legend: {
+					layout: 'vertical',
+					align: 'right',
+					verticalAlign: 'top',
+					x: -40,
+					y: 80,
+					floating: true,
+					borderWidth: 1,
+					backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+					shadow: true
+				},
+				credits: {
+					enabled: false
+				},
+				series: [{
+					name: names[0],
+					data: value1,
+					pointWidth: point_width
+				}, {
+					name: names[8],
+					data: value2,
+					pointWidth: point_width
+				}, {
+					name: names[16],
+					data: value3,
+					pointWidth: point_width				
+				}, {
+					name: names[24],
+					data: value4,
+					pointWidth: point_width
+				}]
+			});
+		});
+	});
+		
+	/*$(function () {
+
+		
+		$('#data_visualization').highcharts({
 			chart: {
 				type: 'bar'
 			},
@@ -541,8 +413,133 @@ function myFunction() {
 				pointWidth: point_width
 			}]
 		});
-	});
+	});*/
+
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+	});	
+	
+	function dataToVisualization(){
+		for (var i = 0 ; i < input_index - 1 ; i++){
+			var companyId = "company" + (i + 1);
+			var x =  document.getElementById(companyId).value;
+			input.push(x);
+		}
+
+		names = loadName();
+		values = loadValue();			
+			
+		splitValue();		
+	}
+	
+	function loadValue() {
+		var mycoal = JSON.parse(coal_export);
 		
+		var value = [];
+		var i;
+		for (i = 0; i < mycoal.length; i++) {
+			var j; 
+			for (j = 0; j < input.length; j++ ){
+				if (mycoal[i].nama_entitas == input[j]){
+					if (mycoal[i].nilai != ""){
+						value.push(parseInt(mycoal[i].nilai));					
+					}
+					else{
+						value.push(0);
+					}
+				}
+			}
+		}	
+		return value;
+	}		
+	
+	function loadName() {
+		var mycoal = JSON.parse(coal_export);
+		
+		var text = [];
+		var i;
+		for (i = 0; i < mycoal.length; i++) {
+			var j; 
+			for (j = 0; j < input.length; j++ ){
+				if (mycoal[i].nama_entitas == input[j]){
+					text.push(mycoal[i].nama_entitas);					
+				}
+			}
+		}	
+		return text;
+	}	
+	
+	function splitValue(){
+		var len = input.length;
+		if (len == 1 ){
+			splitValue1();
+		}
+		else if (len == 2){
+			splitValue1();
+			splitValue2();
+		}
+		else if (len == 3){
+			splitValue1();
+			splitValue2();
+			splitValue3();
+		}
+		else{
+			splitValue1();
+			splitValue2();
+			splitValue3();
+			splitValue4();
+		}
+	}
+	
+	function splitValue1(){
+		for (var i = 0 ; i < 8 ; i++){
+			value1.push(values[i]);
+		}		
+	}
+	
+	function splitValue2(){
+		for (var i = 8 ; i < 16 ; i++){
+			value2.push(values[i]);
+		}	
+	}
+	
+	function splitValue3(){
+		for (var i = 16 ; i < 24 ; i++){
+			value3.push(values[i]);
+		}	
+	}
+
+	function splitValue4(){
+		for (var i = 24 ; i < 32 ; i++){
+			value4.push(values[i]);
+		}	
+	}	
+	
     </script>
 
 </body>
