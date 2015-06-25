@@ -104,11 +104,7 @@
 	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 	
 	<div id="container2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
-	
-	<div id="demo" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
-	<div id="demo2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-	
     <!-- Callout -->
     <aside class="callout">
         <div class="text-vertical-center">
@@ -228,90 +224,8 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script src="http://code.highcharts.com/highcharts.js"></script>
 	<script src="http://code.highcharts.com/modules/exporting.js"></script>
-	<script type="text/javascript" src="coal_new.json"></script>
-    <script type="text/javascript" src="coal.js"></script>
     
     <script>
-	var years = ['2003', '2004', '2005', '2006', '2007', '2008','2009', '2010'];
-	var input = [];
-	input.push("Adaro Indonesia, PT");
-	input.push("Allied Indo Coal, PT");
-	input.push("Antang Gunung Meratus, PT");
-	input.push("Asmin Koalindo Tuhup, PT");
-	input.push("Arutmin Indonesia, PT");
-
-	function loadValue() {
-		var mycoal = JSON.parse(coal_export);
-		
-		var value = [];
-		var i;
-		for (i = 0; i < mycoal.length; i++) {
-			var j; 
-			for (j = 0; j < input.length; j++ ){
-				if (mycoal[i].nama_entitas == input[j]){
-					value.push(mycoal[i].nilai);					
-				}
-			}
-
-		}	
-		return value;
-
-	}		
-	
-	function loadName() {
-		var mycoal = JSON.parse(coal_export);
-		
-		var text = [];
-		var i;
-		for (i = 0; i < mycoal.length; i++) {
-			var j; 
-			for (j = 0; j < input.length; j++ ){
-				if (mycoal[i].nama_entitas == input[j]){
-					text.push(mycoal[i].nama_entitas);					
-				}
-			}
-
-		}	
-		return text;
-	}	
-	
-	var names = loadName();
-	var values = loadValue();
-	
-    function generateData() {
-        var ret = {},
-            ps = [],
-            series = [],
-            len = input.length;
-
-        //concat to get points
-        for (var i = 0; i < len; i++) {			
-            ps[i] = {
-                y: points[i],
-                n: names[i]
-            };
-        }
-        names = [];
-        //generate series and split points
-        for (i = 0; i < len; i++) {
-            var p = ps[i],
-                sIndex = $.inArray(p.n, names);
-
-            if (sIndex < 0) {
-                sIndex = names.push(p.n) - 1;
-                series.push({
-                    name: p.n,
-                    data: []
-                });
-            }
-            series[sIndex].data.push(p);
-        }
-        return series;
-    }
-    
-	document.getElementById("demo").innerHTML = loadName();
-	document.getElementById("demo2").innerHTML = loadValue();
-	
     // Closes the sidebar menu
     $("#menu-close").click(function(e) {
         e.preventDefault();
@@ -340,9 +254,43 @@
             }
         });
 	});	
+    
+    $(function generateData(cats, names, points) {
+        var ret = {},
+            ps = [],
+            series = [],
+            len = cats.length;
+
+        //concat to get points
+        for (var i = 0; i < len; i++) {
+            ps[i] = {
+                x: cats[i],
+                y: points[i],
+                n: names[i]
+            };
+        }
+        names = [];
+        //generate series and split points
+        for (i = 0; i < len; i++) {
+            var p = ps[i],
+                sIndex = $.inArray(p.n, names);
+
+            if (sIndex < 0) {
+                sIndex = names.push(p.n) - 1;
+                series.push({
+                    name: p.n,
+                    data: []
+                });
+            }
+            series[sIndex].data.push(p);
+        }
+        return series;
+    });
+
         
-    //Line Chart
 	$(function () {
+		var years = ['2003', '2004', '2005', '2006', '2007', '2008','2009', '2010'];
+		
 		$('#container').highcharts({
 			title: {
 				text: 'Monthly Average Temperature',
