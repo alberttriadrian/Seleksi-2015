@@ -27,11 +27,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+
 
 </head>
 
 <body>
-
 	<!-- Navigation -->
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container">
@@ -92,9 +93,44 @@
         </ul>
     </nav>
 
+
     <!-- About -->
     <section id="about" class="about">
     </section>
+    
+	<div class="row">
+	  <div class="col-lg-10 col-md-offset-1">
+		<div class="input-group">
+		  <span class="input-group-btn">
+			<button class="btn btn-default" type="button">Company Name</button>
+		  </span>
+		  <input type="text" class="form-control" placeholder="Input your company name ...">
+		</div>
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="col-lg-10 col-md-offset-1">
+		<button id="add-button" onclick="addInputIndex()">Click me</button>
+	  </div>
+	</div>
+	
+	<p id="input_place"></p>
+	
+<p id="demo"></p>
+
+<p>Field 1: <input type="text" name="field[1]" class="fields"></p> 
+<p>Field 2: <input type="text" name="field[2]" class="fields"></p>
+
+<script>
+var testArray = [];
+	
+function myFunction() {
+	var x =  document.getElementById("company1").value;
+	testArray.push(x)
+    document.getElementById("demo").innerHTML = str;
+}
+</script>
 
     <!-- Services -->
     <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
@@ -336,6 +372,24 @@
     
 	document.getElementById("demo").innerHTML = loadName();
 	document.getElementById("demo2").innerHTML = loadValue();
+	
+	var input_index = 1;
+	var input_add;
+	
+	//Add the input box, the company name
+    $("button#add-button").click(function(){
+		if (input_index <= 4){
+			var input_add = "<br><div class=\"row\"><div class=\"col-lg-10 col-md-offset-1\">" + 
+				"<div class=\"input-group\"><span class=\"input-group-btn\"><button class=\"btn btn-default\"" + 
+				" type=\"button\">Company Name " + input_index +"</button></span><input type=\"text\"" +
+				" class=\"form-control\" id=\"company\""+ input_index + " placeholder=\"Input your company name ...\">" + 
+				"</div></div></div>" ;
+			$(input_add).insertBefore("p#input_place");
+			input_index++;
+			
+		}
+    });
+
 
     // Closes the sidebar menu
     $("#menu-close").click(function(e) {

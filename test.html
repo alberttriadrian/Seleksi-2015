@@ -1,4 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+var str = "My \"String\""; 
+var str1 = "<input type=\"text\" name=\"field[1]\" class=\"fields\">";
+$(document).ready(function(){
+    $("button").click(function(){
+        $(str1).insertAfter("p");
+    });
+});
+
+    document.getElementById("demo").innerHTML = str;
+</script>
+</head>
+<body>
+
+<button>Insert span element after each p element</button>
+
+<p>Field 1: <input type="text" name="field[1]" class="fields"></p> 
+<p>Field 2: <input type="text" name="field[2]" class="fields"></p>
+
+<p id="demo"></p>
+<p>This is another paragraph.</p>
+
+<button type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+</button>
+</body>
+</html>
+
+
+<!--<!doctype html>
 <html>
     <head>
         <title>askyb - Load JSON File Locally by Javascript Without JQuery</title>
@@ -7,7 +40,7 @@
     </head>
     <body id="demo" onload="load()">
     </body>
-</html>
+</html>-->
 
 <!--<!DOCTYPE html>
 <html>
