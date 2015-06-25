@@ -249,7 +249,12 @@
 			var j; 
 			for (j = 0; j < input.length; j++ ){
 				if (mycoal[i].nama_entitas == input[j]){
-					value.push(mycoal[i].nilai);					
+					if (mycoal[i].nilai != ""){
+						value.push(parseInt(mycoal[i].nilai));					
+					}
+					else{
+						value.push(0);
+					}
 				}
 			}
 
@@ -277,41 +282,61 @@
 	
 	var names = loadName();
 	var values = loadValue();
+	//var series = generateData();
+	var value1 = [];
+	var value2 = [];
+	var value3 = [];
+	var value4 = [];
+	//generateData();
+	splitValue();
+
 	
-    function generateData() {
-        var ret = {},
-            ps = [],
-            series = [],
-            len = input.length;
-
-        //concat to get points
-        for (var i = 0; i < len; i++) {			
-            ps[i] = {
-                y: points[i],
-                n: names[i]
-            };
-        }
-        names = [];
-        //generate series and split points
-        for (i = 0; i < len; i++) {
-            var p = ps[i],
-                sIndex = $.inArray(p.n, names);
-
-            if (sIndex < 0) {
-                sIndex = names.push(p.n) - 1;
-                series.push({
-                    name: p.n,
-                    data: []
-                });
-            }
-            series[sIndex].data.push(p);
-        }
-        return series;
-    }
+	function splitValue(){
+		for (var i = 0 ; i < 8 ; i++){
+			value1.push(values[i]);
+		}
+		for (var i = 8 ; i < 16 ; i++){
+			value2.push(values[i]);
+		}
+		for (var i = 16 ; i < 24 ; i++){
+			value3.push(values[i]);
+		}
+		for (var i = 24 ; i < 32 ; i++){
+			value4.push(values[i]);
+		}
+	}
+	
+	/*function generateData() {
+		var seriesTemp =[];
+		var len1 = input.length;
+		var len2 = values.length;
+		var index = 0;
+		var index2 = 0;
+		for (var i = 0 ; i < len1 ; i++){
+			var dataTemp = [];
+			for (var count = 0; count < 8 ; count++ ){
+				dataTemp.push(values[index2]);
+				if (index2 != values.length()){
+					index2++;
+				}
+			}
+			
+			seriesTemp.push({
+				name: names[index],
+				data: []
+			});
+			
+			seriesTemp[i].data.push(dataTemp);
+			
+			index += 8;
+		}
+		return seriesTemp;
+    }*/
+    
     
 	document.getElementById("demo").innerHTML = loadName();
 	document.getElementById("demo2").innerHTML = loadValue();
-	
+
     // Closes the sidebar menu
     $("#menu-close").click(function(e) {
         e.preventDefault();
@@ -375,22 +400,24 @@
 				borderWidth: 0
 			},
 			series: [{
-				name: 'Tokyo',
-				data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+				name: names[0],
+				data: value1
 			}, {
-				name: 'New York',
-				data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+				name: names[8],
+				data: value2
 			}, {
-				name: 'Berlin',
-				data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+				name: names[16],
+				data: value3
 			}, {
-				name: 'London',
-				data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+				name: names[24],
+				data: value4
 			}]
 		});
 	});	
 	
 	$(function () {
+		var point_width = 8;
+		
 		$('#container2').highcharts({
 			chart: {
 				type: 'bar'
@@ -443,17 +470,21 @@
 				enabled: false
 			},
 			series: [{
-				name: 'Tokyo',
-				data: [107, 31, 635, 203, 2,1,2,3]
+				name: names[0],
+				data: value1,
+				pointWidth: point_width
 			}, {
-				name: 'Semarang',
-				data: [133, 156, 947, 408, 6,3,4,5]
+				name: names[8],
+				data: value2,
+				pointWidth: point_width
 			}, {
-				name: 'Jakarta',
-				data: [973, 914, 4054, 732, 34,4,5,6]
+				name: names[16],
+				data: value3,
+				pointWidth: point_width				
 			}, {
-				name: 'Indonesia',
-				data: [1052, 954, 4250, 740, 38,5,6,7]
+				name: names[24],
+				data: value4,
+				pointWidth: point_width
 			}]
 		});
 	});

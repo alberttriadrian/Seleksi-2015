@@ -29,17 +29,16 @@ $(function () {
         names = [];
         //generate series and split points
         for (i = 0; i < len; i++) {
-            var p = ps[i],
-                sIndex = $.inArray(p.n, names);
+            var sIndex = $.inArray(ps[i].n, names);
 
             if (sIndex < 0) {
-                sIndex = names.push(p.n) - 1;
+                sIndex = names.push(ps[i].n) - 1;
                 series.push({
-                    name: p.n,
+                    name: ps[i].n,
                     data: []
                 });
             }
-            series[sIndex].data.push(p);
+            series[sIndex].data.push(ps[i]);
         }
         return series;
     }
