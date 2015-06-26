@@ -1,0 +1,12 @@
+div.container{
+	height: 60px;
+	margin-top: 5px;
+}
+
+nav#main_nav{
+	opacity : 0.8;
+}
+
+a.toogle_menu{
+	color : red;
+}
