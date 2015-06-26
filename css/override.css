@@ -1,3 +1,5 @@
+
+
 div.container{
 	margin-top: 5px;
 }
@@ -6,6 +8,28 @@ nav#main_nav{
 	opacity : 0.8;
 }
 
-a.toogle_menu{
-	color : red;
+section#services,aside{
+	background: #1e5799; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover,  #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#1e5799), color-stop(50%,#2989d8), color-stop(51%,#207cca), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+section#description1,section#description3{
+	background: rgb(252,255,244); /* Old browsers */
+	background: -moz-linear-gradient(left,  rgba(252,255,244,1) 0%, rgba(233,233,206,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(252,255,244,1)), color-stop(100%,rgba(233,233,206,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  rgba(252,255,244,1) 0%,rgba(233,233,206,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  rgba(252,255,244,1) 0%,rgba(233,233,206,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  rgba(252,255,244,1) 0%,rgba(233,233,206,1) 100%); /* IE10+ */
+	background: linear-gradient(to right,  rgba(252,255,244,1) 0%,rgba(233,233,206,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#e9e9ce',GradientType=1 ); /* IE6-9 */
+}
+
+img.featurette-image{
+	margin-top : 50px;
 }

@@ -16,6 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="css/stylish-portfolio.css" rel="stylesheet">
+	<link href="css/override.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -33,19 +34,19 @@
 </head>
 
 <body>
-	<!-- Navigation -->
-	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
+    <!-- Navigation -->
+    <nav id="main_nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header nav">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
 					<i class="fa fa-bars"></i>
 				</button>
 				<a class="navbar-brand page-scroll" href="index.html">
-					<i class="fa fa-play-circle"></i>  <span class="light">Home</span> Kelompok 3
+					<b><i class="fa fa-play-circle"></i> <span class="light">Home</span> Kelompok 3</b>
 				</a>
 			</div>
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
 				<ul class="nav navbar-nav">
 					<!-- Hidden li included to remove active class from Data Visualization link when scrolled up past Data Visualization section -->
@@ -53,20 +54,24 @@
 						<a href="#page-top"></a>
 					</li>
 					<li>
-						<a class="page-scroll" href="#services">Data Visualization</a>
+						<a class="navbar-brand page-scroll" href="coal.html">
+							<b><i class="fa fa-play-circle"></i> <span class="light">Data Visualization</b>
+						</a>
 					</li>
 					<li>
-						<a class="page-scroll" href="#About Us">About Us</a>
+						<a class="navbar-brand page-scroll" href="coal.html">
+							<b><i class="fa fa-play-circle"></i> <span class="light">About Us</b>
+						</a>
 					</li>
 					<li>
-						<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+						<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle" width="200px"><i class="fa fa-bars"></i></a>
 					</li>
 				</ul>
 			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container -->
-	</nav> 
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
     
     <!-- Navigation Box Content -->
     <nav id="sidebar-wrapper">
@@ -101,7 +106,7 @@
 		<div class="col-lg-10 col-md-offset-1">  
 			<div class="input-group">
 				<span class="input-group-btn">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Data Visualization Coal Sector
 					  <span class="caret"></span>
 					</button>
@@ -117,13 +122,12 @@
 		</div>
 	</div><br>
     
-	<div class="row">
-	  <div class="col-lg-10 col-md-offset-1">
-		<button id="add-button">+ Add</button>
-		<button id="delete-button">- Delete</button>
 
-	  </div>
-	</div>
+	  <div class="col-lg-10 col-md-offset-1">
+		<button class="btn btn-danger" id="add-button"><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+		<button class="btn btn-warning" id="delete-button"><span class=" glyphicon glyphicon-minus" aria-hidden="true"></span> Delete</button>
+	  </div><br><br>
+
 	
 
 	<div id="input_place_parent">
@@ -131,10 +135,8 @@
 	</div>
 	
 	<div class="col-lg-10 col-md-offset-1">
-		<button id="chart-button">Chart</button>
-		<button id="bar-button">Bar</button>
-				
-
+		<button class="btn btn-primary" id="chart-button"><span class=" glyphicon glyphicon-signal" aria-hidden="true"></span> Chart</button>
+		<button class= "btn btn-info"id="bar-button"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Bar</button>
 	</div>
 	
     <!-- The Data Visualization Implementation -->	
@@ -145,9 +147,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h3>The buttons below are impossible to resist.</h3>
-                    <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-                    <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
+                    <h1>Visualization from the Blue Sky</h1>
+                    <a href="#" class="btn btn-lg btn-dark">Sky</a>
+                    <a href="#" class="btn btn-lg btn-dark">Data</a>
                 </div>
             </div>
         </div>
@@ -227,7 +229,7 @@
 			getListCompanyName(input_index);
 	
 			var input_add = "<br id=\"company_parent" +input_index +"\"><div id=\"company_parent" + input_index + "\" class=\"row\"><div class=\"col-lg-10 col-md-offset-1\"> <div class=\"input-group\">" +
-				"<span class=\"input-group-btn\">" + "<button type=\"button\" class=\"btn btn-default dropdown-toggle\"" +
+				"<span class=\"input-group-btn\">" + "<button type=\"button\" class=\"btn btn-success dropdown-toggle\"" +
 				" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">" +
 				"Company Name " + input_index + "<span class=\"caret\"></span>" + 
 				"</button><ul class=\"dropdown-menu\">" + allNameList + "</ul></span>" + 
