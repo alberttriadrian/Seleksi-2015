@@ -93,10 +93,29 @@
         </ul>
     </nav>
 
-	<div id="albert">Albert</div>
     <!-- About -->
     <section id="about" class="about">
     </section>
+    
+    <div class="row">
+		<div class="col-lg-10 col-md-offset-1">  
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Data Visualization Coal Sector
+					  <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+					  <li><a id="coal-1" onclick="coalSector(id)">coal_ekspor</a></li>
+					  <li><a id="coal-2" onclick="coalSector(id)">coal_stock</a></li>
+					  <li><a id="coal-3" onclick="coalSector(id)">coal_production</a></li>
+					  <li><a id="coal-4" onclick="coalSector(id)">coal_domestic-selling</a></li>
+					</ul>
+				</span>
+				<input type="text" class="form-control" id="coal_sector" placeholder="Input your coal sector data  ..." value="">
+			</div>
+		</div>
+	</div><br>
     
 	<div class="row">
 	  <div class="col-lg-10 col-md-offset-1">
@@ -120,24 +139,6 @@
 	
     <!-- The Data Visualization Implementation -->	
 	<div id="visualization_place" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-	<!--<div class="row">
-		<div class="col-lg-10 col-md-offset-1">  
-			<div class="input-group">
-				<span class="input-group-btn">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					  Company Name
-					  <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-					  <li><a id="1-1" onclick="listValue(id)">Dropdown link 2</a></li>
-					  <li><a id="1-2" onclick="listValue(id)">Dropdown link</a></li>
-					</ul>
-				</span>
-				<input type="text" class="form-control" id="company1" placeholder="Input your company name ..." value="">
-			</div>
-		</div>
-	</div>-->
 	
     <!-- Call to Action -->
     <aside class="call-to-action bg-primary">
@@ -193,16 +194,17 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script src="http://code.highcharts.com/highcharts.js"></script>
 	<script src="http://code.highcharts.com/modules/exporting.js"></script>
-	<script type="text/javascript" src="coal.json"></script>
+	<script id="coal_sector_file" type="text/javascript" src="coal_ekspor.json"></script>
     
     <script>
 		
 	var years = ['2003', '2004', '2005', '2006', '2007', '2008','2009', '2010'];
 	var input = [];
 	
-	var allNames = loadAllName();
+	var allNames;
 	var allNameList;
 	
+	var coal_sector_title="";
 	var names;
 	var values;
 
@@ -243,6 +245,13 @@
     function listValue(id){
 		document.getElementById("company" + id.charAt(0)).value = document.getElementById(id.toString()).innerHTML;		
 	}
+	
+	function coalSector(id){
+		document.getElementById("coal_sector").value = document.getElementById(id.toString()).innerHTML;	
+		document.getElementById("coal_sector_file").src = document.getElementById(id.toString()).innerHTML + ".json";
+		allNames = loadAllName();			
+		coal_sector_title = document.getElementById(id.toString()).innerHTML;
+	}
     
     //Line Chart
 	$(function () {
@@ -252,14 +261,17 @@
 			dataToVisualization();	
 			$('#visualization_place').highcharts({
 				title: {
-					text: 'Monthly Average Temperature',
+					text: coal_sector_title + ' in Indonesia 2003 - 2010',
 					x: -20 //center
 				},
 				subtitle: {
-					text: 'Source: WorldClimate.com',
+					text: 'Source: <u><a href="http://data.go.id/">Portal Data Indonesia</a></u>',
 					x: -20
 				},
 				xAxis: {
+					title:{
+						text: 'Years'
+					},
 					categories: years
 				},
 				yAxis: {
@@ -306,23 +318,24 @@
 					type: 'bar'
 				},
 				title: {
-					text: 'Historic World Population by Region'
+					text: coal_sector_title + ' in Indonesia 2003 - 2010',
+					x: -20
 				},
 				subtitle: {
-					text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+					text: 'Source: <u><a href="http://data.go.id/">Portal Data Indonesia</a></u>'
 				},
 				xAxis: {
 					categories: ['2003', '2004', '2005', '2006', '2007', '2008',
 						'2009', '2010'],
 					title: {
-						text: null
+						text: 'Years'
 					}
 				},
 				yAxis: {
 					min: 0,
 					title: {
 						text: 'Coal Units (units)',
-						align: 'high'
+						x : -20
 					},
 					labels: {
 						overflow: 'justify'
@@ -417,7 +430,6 @@
 		for (var i = 0 ; i < input_index - 1 ; i++){
 			var companyId = "company" + (i + 1);
 			var x =  document.getElementById(companyId).value;
-			//document.getElementById("demo").innerHTML = x;
 			input.push(x);
 		}
 
@@ -428,7 +440,7 @@
 	}
 	
 	function loadValue() {
-		var mycoal = JSON.parse(coal_export);
+		var mycoal = JSON.parse(coal_data);
 		
 		var value = [];
 		var i;
@@ -449,7 +461,7 @@
 	}		
 	
 	function loadName() {
-		var mycoal = JSON.parse(coal_export);
+		var mycoal = JSON.parse(coal_data);
 		
 		var text = [];
 		var i;
@@ -465,7 +477,7 @@
 	}	
 
 	function loadAllName() {
-		var mycoal = JSON.parse(coal_export);
+		var mycoal = JSON.parse(coal_data);
 		
 		var text = [];
 		var i;
