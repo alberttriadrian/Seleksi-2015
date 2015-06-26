@@ -106,10 +106,10 @@
 					  <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
-					  <li><a id="coal-1" onclick="coalSector(id)">coal_ekspor</a></li>
-					  <li><a id="coal-2" onclick="coalSector(id)">coal_stock</a></li>
-					  <li><a id="coal-3" onclick="coalSector(id)">coal_production</a></li>
-					  <li><a id="coal-4" onclick="coalSector(id)">coal_domestic-selling</a></li>
+					  <li><a id="1coal" onclick="coalSector(id)">coal_ekspor</a></li>
+					  <li><a id="2coal" onclick="coalSector(id)">coal_production</a></li>
+					  <li><a id="3coal" onclick="coalSector(id)">coal_domestic-selling</a></li>
+					  <li><a id="4coal" onclick="coalSector(id)">coal_stock</a></li>
 					</ul>
 				</span>
 				<input type="text" class="form-control" id="coal_sector" placeholder="Input your coal sector data  ..." value="">
@@ -194,16 +194,21 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script src="http://code.highcharts.com/highcharts.js"></script>
 	<script src="http://code.highcharts.com/modules/exporting.js"></script>
-	<script id="coal_sector_file" type="text/javascript" src="coal_ekspor.json"></script>
+	<script id="1coal_sector_file" type="text/javascript" src="data/coal_ekspor.json"></script>
+	<script id="2coal_sector_file" type="text/javascript" src="data/coal_production.json"></script>
+	<script id="3coal_sector_file" type="text/javascript" src="data/coal_domestic-selling.json"></script>
+	<script id="4coal_sector_file" type="text/javascript" src="data/coal_stock.json"></script>
     
     <script>
 		
 	var years = ['2003', '2004', '2005', '2006', '2007', '2008','2009', '2010'];
 	var input = [];
 	
+	var mycoal;
 	var allNames;
 	var allNameList;
 	
+	var coal_sector_id = 0;
 	var coal_sector_title="";
 	var names;
 	var values;
@@ -248,9 +253,11 @@
 	
 	function coalSector(id){
 		document.getElementById("coal_sector").value = document.getElementById(id.toString()).innerHTML;	
-		document.getElementById("coal_sector_file").src = document.getElementById(id.toString()).innerHTML + ".json";
-		allNames = loadAllName();			
+		//document.getElementById("coal_sector_file").src = "data/" + document.getElementById(id.toString()).innerHTML + ".json";			
+		coal_sector_id = parseInt(id.charAt(0));
+		allNames = loadAllName();
 		coal_sector_title = document.getElementById(id.toString()).innerHTML;
+
 	}
     
     //Line Chart
@@ -265,7 +272,7 @@
 					x: -20 //center
 				},
 				subtitle: {
-					text: 'Source: <u><a href="http://data.go.id/">Portal Data Indonesia</a></u>',
+					text: 'Source: <a href="http://data.go.id/">Portal Data Indonesia</a>',
 					x: -20
 				},
 				xAxis: {
@@ -438,9 +445,24 @@
 			
 		splitValue();		
 	}
+
+	function loadData(){
+		if (coal_sector_id == 1){
+			mycoal = JSON.parse(coal_ekspor_data);
+		}
+		else if (coal_sector_id == 2){
+			mycoal = JSON.parse(coal_production_data);			
+		}
+		else if (coal_sector_id == 3){
+			mycoal = JSON.parse(coal_domesticselling_data);			
+		}
+		else if (coal_sector_id == 4){
+			mycoal = JSON.parse(coal_stock_data);			
+		}
+	}
 	
 	function loadValue() {
-		var mycoal = JSON.parse(coal_data);
+		loadData();
 		
 		var value = [];
 		var i;
@@ -461,7 +483,7 @@
 	}		
 	
 	function loadName() {
-		var mycoal = JSON.parse(coal_data);
+		loadData();
 		
 		var text = [];
 		var i;
@@ -477,7 +499,7 @@
 	}	
 
 	function loadAllName() {
-		var mycoal = JSON.parse(coal_data);
+		loadData();
 		
 		var text = [];
 		var i;
